@@ -1,0 +1,5460 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 1,
+    "id": 2,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 39,
+        "panels": [],
+        "title": "Total Stats",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "max": 3000,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 500
+                },
+                {
+                  "color": "green",
+                  "value": 1000
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 10,
+          "x": 0,
+          "y": 1
+        },
+        "id": 40,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {
+            "valueSize": 20
+          }
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "grid 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "865425"
+              }
+            ]
+          },
+          {
+            "alias": "grid 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "989112"
+              }
+            ]
+          },
+          {
+            "alias": "offgrid 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "offgrid 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "${A} + ${B} + ${C} + ${D}",
+            "hide": false,
+            "refId": "TOTAL",
+            "type": "math"
+          }
+        ],
+        "title": "Solar Power",
+        "transformations": [],
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "max": 3000,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 500
+                },
+                {
+                  "color": "green",
+                  "value": 1000
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 10,
+          "x": 10,
+          "y": 1
+        },
+        "id": 41,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {
+            "valueSize": 20
+          }
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "grid 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "865425"
+              }
+            ]
+          },
+          {
+            "alias": "grid 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "989112"
+              }
+            ]
+          },
+          {
+            "alias": "offgrid 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "offgrid 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "${A} + ${B} + ${C} + ${D}",
+            "hide": false,
+            "refId": "TOTAL",
+            "type": "math"
+          }
+        ],
+        "title": "Output",
+        "transformations": [],
+        "type": "gauge"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 7
+        },
+        "id": 28,
+        "panels": [],
+        "title": "Grid Inverters",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "max": 3000,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 500
+                },
+                {
+                  "color": "green",
+                  "value": 1000
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 6,
+          "x": 0,
+          "y": 8
+        },
+        "id": 29,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {
+            "valueSize": 20
+          }
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "865425"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "989112"
+              }
+            ]
+          }
+        ],
+        "title": "Solar Power",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              }
+            }
+          }
+        ],
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "watth"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 2,
+          "x": 6,
+          "y": 8
+        },
+        "id": 31,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Energy_Today",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "865425"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Energy_Today",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "989112"
+              }
+            ]
+          }
+        ],
+        "title": "Solar Energy Today",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": false
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "watth"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 2,
+          "x": 8,
+          "y": 8
+        },
+        "id": 32,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Energy_Total",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "865425"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Energy_Total",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "989112"
+              }
+            ]
+          }
+        ],
+        "title": "Solar Energy Total",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": false
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": 3600000,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Load_Percentage"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percent"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 10,
+          "y": 8
+        },
+        "id": 38,
+        "options": {
+          "legend": {
+            "calcs": [
+              "max",
+              "min",
+              "mean",
+              "lastNotNull"
+            ],
+            "displayMode": "table",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "desc"
+          }
+        },
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "865425"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "989112"
+              }
+            ]
+          },
+          {
+            "alias": "offgrid 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "offgrid 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "${A} + ${B}",
+            "hide": false,
+            "refId": "grid-tied",
+            "type": "math"
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "${C} + ${D}",
+            "hide": false,
+            "refId": "offgrid",
+            "type": "math"
+          }
+        ],
+        "title": "Total PV Power",
+        "transformations": [],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "max": 3500,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "light-yellow",
+                  "value": 1000
+                },
+                {
+                  "color": "red",
+                  "value": 2000
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 6,
+          "x": 0,
+          "y": 14
+        },
+        "id": 30,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {
+            "valueSize": 20
+          }
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "865425"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "989112"
+              }
+            ]
+          }
+        ],
+        "title": "Output",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              }
+            }
+          }
+        ],
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": 3600000,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Load_Percentage"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percent"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 10,
+          "y": 16
+        },
+        "id": 42,
+        "options": {
+          "legend": {
+            "calcs": [
+              "max",
+              "min",
+              "mean",
+              "lastNotNull"
+            ],
+            "displayMode": "table",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "desc"
+          }
+        },
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "865425"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "989112"
+              }
+            ]
+          },
+          {
+            "alias": "offgrid 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "offgrid 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "${A} + ${B}",
+            "hide": false,
+            "refId": "grid-tied",
+            "type": "math"
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "${C} + ${D}",
+            "hide": false,
+            "refId": "offgrid",
+            "type": "math"
+          }
+        ],
+        "title": "Total Output",
+        "transformations": [],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "currencyEUR"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 2,
+          "x": 0,
+          "y": 20
+        },
+        "id": 33,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "PV_Energy_Total",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "solar1",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "865425"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "PV_Energy_Total",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "solar2",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "989112"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "(${solar1} + ${solar2} ) / 1000 * 0.3\n",
+            "hide": false,
+            "refId": "total",
+            "type": "math"
+          }
+        ],
+        "title": "Risparmio Stimato",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 25
+        },
+        "id": 27,
+        "panels": [],
+        "title": "Off Grid Inverters",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "max": 3000,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 500
+                },
+                {
+                  "color": "green",
+                  "value": 1000
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 6,
+          "x": 0,
+          "y": 26
+        },
+        "id": 17,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {
+            "valueSize": 20
+          }
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          }
+        ],
+        "title": "Solar Power",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              }
+            }
+          }
+        ],
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "max": 3500,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "light-yellow",
+                  "value": 1000
+                },
+                {
+                  "color": "red",
+                  "value": 2000
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 3,
+          "x": 6,
+          "y": 26
+        },
+        "id": 20,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {
+            "valueSize": 20
+          }
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          }
+        ],
+        "title": "Output",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              }
+            }
+          }
+        ],
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 1,
+            "mappings": [],
+            "max": 58.4,
+            "min": 35,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "light-yellow",
+                  "value": 40
+                },
+                {
+                  "color": "light-green",
+                  "value": 47
+                },
+                {
+                  "color": "green",
+                  "value": 54
+                },
+                {
+                  "color": "dark-green",
+                  "value": 55.2
+                }
+              ]
+            },
+            "unit": "volt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 9,
+          "y": 26
+        },
+        "id": 19,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {
+            "valueSize": 20
+          }
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "measurement": "Battery_Voltage",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "title": "Battery Voltage",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 0,
+            "mappings": [
+              {
+                "options": {
+                  "0": {
+                    "index": 0,
+                    "text": "Standby"
+                  },
+                  "2": {
+                    "index": 1,
+                    "text": "Discharging"
+                  },
+                  "3": {
+                    "index": 2,
+                    "text": "Fault"
+                  },
+                  "4": {
+                    "index": 3,
+                    "text": "Flashing"
+                  },
+                  "5": {
+                    "index": 4,
+                    "text": "PV Charging"
+                  },
+                  "6": {
+                    "index": 5,
+                    "text": "AC Charging"
+                  },
+                  "7": {
+                    "index": 6,
+                    "text": "Combined Charging"
+                  },
+                  "8": {
+                    "index": 7,
+                    "text": "Combined Charging in Bypass"
+                  },
+                  "9": {
+                    "index": 8,
+                    "text": "PV Charging in Bypass"
+                  },
+                  "10": {
+                    "index": 9,
+                    "text": "AC Charging in Bypass"
+                  },
+                  "11": {
+                    "index": 10,
+                    "text": "Bypass"
+                  },
+                  "12": {
+                    "index": 11,
+                    "text": "PV Charging and Discharging"
+                  }
+                },
+                "type": "value"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 2,
+          "x": 12,
+          "y": 26
+        },
+        "id": 7,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1 status",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "measurement": "System_Status",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2 status",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "System_Status",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          }
+        ],
+        "title": "Status",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "kwatth"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 2,
+          "x": 14,
+          "y": 26
+        },
+        "id": 12,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Energy_Today",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Energy_Today",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          }
+        ],
+        "title": "Solar Energy Today",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": false
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "kwatth"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 2,
+          "x": 16,
+          "y": 26
+        },
+        "id": 11,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Battery_Discharge_Today",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Battery_Discharge_Today",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          }
+        ],
+        "title": "Battery Discharge Today",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "kwatth"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 2,
+          "x": 18,
+          "y": 26
+        },
+        "id": 10,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Energy_Total",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Energy_Total",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          }
+        ],
+        "title": "Solar Energy Total",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total produced",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "kwatth"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 2,
+          "x": 20,
+          "y": 26
+        },
+        "id": 22,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Battery_Discharge_Total",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Battery_Discharge_Total",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          }
+        ],
+        "title": "Battery Discharge Today",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              }
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "currencyEUR"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 2,
+          "x": 22,
+          "y": 26
+        },
+        "id": 24,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "PV_Energy_Total",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "solar1",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "PV_Energy_Total",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "solar2",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "${solar1} + ${solar2}  * 0.27",
+            "hide": false,
+            "refId": "total",
+            "type": "math"
+          }
+        ],
+        "title": "Risparmio Stimato",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "max": 3000,
+            "min": -3000,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 1
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 1000
+                },
+                {
+                  "color": "red",
+                  "value": 2000
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 6,
+          "x": 0,
+          "y": 32
+        },
+        "id": 18,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {
+            "valueSize": 20
+          }
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Battery_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Battery_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          }
+        ],
+        "title": "Battery Power",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              }
+            }
+          }
+        ],
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 1,
+            "mappings": [],
+            "max": 58.4,
+            "min": 35,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "light-yellow",
+                  "value": 40
+                },
+                {
+                  "color": "light-green",
+                  "value": 47
+                },
+                {
+                  "color": "green",
+                  "value": 54
+                },
+                {
+                  "color": "dark-green",
+                  "value": 55.2
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 9,
+          "y": 32
+        },
+        "id": 21,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "battery soc",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Battery_SOC",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          }
+        ],
+        "title": "Battery SOC",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": 3600000,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "decimals": 1,
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 7,
+          "x": 0,
+          "y": 38
+        },
+        "id": 2,
+        "options": {
+          "legend": {
+            "calcs": [
+              "max",
+              "min",
+              "mean",
+              "lastNotNull"
+            ],
+            "displayMode": "table",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "desc"
+          }
+        },
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          }
+        ],
+        "title": "Input Power and Voltage",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": 3600000,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "decimals": 1,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "super-light-green",
+                  "value": null
+                },
+                {
+                  "color": "super-light-orange",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Battery_Watts"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "watt"
+                },
+                {
+                  "id": "min",
+                  "value": -3000
+                },
+                {
+                  "id": "max",
+                  "value": 3000
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 7,
+          "y": 38
+        },
+        "id": 26,
+        "options": {
+          "legend": {
+            "calcs": [
+              "max",
+              "min",
+              "mean",
+              "lastNotNull"
+            ],
+            "displayMode": "table",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "desc"
+          }
+        },
+        "targets": [
+          {
+            "alias": "battery1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "Battery_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "battery2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "Battery_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "${D} + ${B}",
+            "hide": false,
+            "refId": "battery",
+            "type": "math"
+          },
+          {
+            "alias": "solar1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "solar1",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "solar2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": true,
+            "measurement": "PV_Power",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "solar2",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "${solar1} + ${solar2}",
+            "hide": false,
+            "refId": "solar",
+            "type": "math"
+          },
+          {
+            "datasource": {
+              "name": "Expression",
+              "type": "__expr__",
+              "uid": "__expr__"
+            },
+            "expression": "${solar} + ${battery}",
+            "hide": false,
+            "refId": "balance",
+            "type": "math"
+          }
+        ],
+        "title": "Solar / Battery Balance",
+        "transformations": [],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": 3600000,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Load_Percentage"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percent"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 15,
+          "y": 38
+        },
+        "id": 5,
+        "options": {
+          "legend": {
+            "calcs": [
+              "max",
+              "min",
+              "mean",
+              "lastNotNull"
+            ],
+            "displayMode": "table",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "desc"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "hide": true,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "hide": true,
+            "measurement": "AC_Discharge_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Load_Percentage",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          }
+        ],
+        "title": "Load Percentage",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineWidth": 3,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": 3600000,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "amp"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 7,
+          "x": 0,
+          "y": 47
+        },
+        "id": 8,
+        "options": {
+          "legend": {
+            "calcs": [
+              "max",
+              "min",
+              "mean",
+              "lastNotNull"
+            ],
+            "displayMode": "table",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "desc"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "measurement": "Buck_Converter_Current",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Output_Current",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Inverter_Current",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "AC_Charger_Battery_Current",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          }
+        ],
+        "title": "Internal Current",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineWidth": 3,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": 3600000,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "Inverter_Fan_Speed"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 7,
+          "y": 47
+        },
+        "id": 15,
+        "options": {
+          "legend": {
+            "calcs": [
+              "max",
+              "min",
+              "mean",
+              "lastNotNull"
+            ],
+            "displayMode": "table",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Inverter_Fan_Speed",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Inverter_Fan_Speed",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          }
+        ],
+        "title": "Fan Speeds",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": 3600000,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Load_Percentage"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percent"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 15,
+          "y": 47
+        },
+        "id": 25,
+        "options": {
+          "legend": {
+            "calcs": [
+              "max",
+              "min",
+              "mean",
+              "lastNotNull"
+            ],
+            "displayMode": "table",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "desc"
+          }
+        },
+        "targets": [
+          {
+            "alias": "inverter 1",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "alias": "inverter 2",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Output_Watts",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_2"
+              }
+            ]
+          }
+        ],
+        "title": "Total Output",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "total_output",
+              "binary": {
+                "left": "inverter 1",
+                "reducer": "sum",
+                "right": "inverter 2"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": true
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "decimals": 1,
+            "mappings": [],
+            "max": 100,
+            "min": 20,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "light-yellow",
+                  "value": 40
+                },
+                {
+                  "color": "light-green",
+                  "value": 47
+                },
+                {
+                  "color": "green",
+                  "value": 54
+                },
+                {
+                  "color": "dark-green",
+                  "value": 55.2
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 7,
+          "x": 0,
+          "y": 56
+        },
+        "id": 23,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "10.0.3",
+        "targets": [
+          {
+            "alias": "battery soc",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "Battery_SOC",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          }
+        ],
+        "title": "Battery SOC",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": 3600000,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 7,
+          "y": 56
+        },
+        "id": 9,
+        "options": {
+          "legend": {
+            "calcs": [
+              "max",
+              "min",
+              "mean",
+              "lastNotNull"
+            ],
+            "displayMode": "table",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "measurement": "Buck_Converter_Temperature",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Inverter_Temperature",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          },
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "f8e8de00-3a9c-4864-a533-b537ec24f380"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "DC_to_DC_Converter_Temperature",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "sensor::tag",
+                "operator": "=",
+                "value": "growatt_1"
+              }
+            ]
+          }
+        ],
+        "title": "Temperature",
+        "type": "timeseries"
+      }
+    ],
+    "refresh": "5m",
+    "schemaVersion": 38,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-2d",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "timezone": "",
+    "title": "solar",
+    "uid": "IMs8EAZRk",
+    "version": 21,
+    "weekStart": ""
+  }
