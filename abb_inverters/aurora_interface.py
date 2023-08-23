@@ -4,7 +4,7 @@ from time import sleep
 from functools import cached_property
 from pprint import pprint
 from influxdb import InfluxDBClient
-
+from .secrets import influxdb_host, influxdb_port, influxdb_db, serial_port_1, serial_port_2, influxdb_user, influxdb_password
 class AuroraInterface:
     def __init__(
             self,
@@ -107,13 +107,14 @@ class AuroraInterface:
 
 if __name__ == "__main__":
 
-    ports = ["/dev/ttyUSB2", "/dev/ttyUSB3"]
+    ports = [serial_port_1, serial_port_2]
     interfaces = [AuroraInterface(serial_port=port, address=2) for port in ports]
     for interface in interfaces:
         interface.connect()
 
-    db_client = InfluxDBClient(host="192.168.1.70", port=8086)
-    db_client.switch_database("mydb")
+    db_client = InfluxDBClient(
+        host=influxdb_host, port=influxdb_port, username=influxdb_user, password=influxdb_password)
+    db_client.switch_database(influxdb_db)
 
     while True:
         for interface in interfaces:  
