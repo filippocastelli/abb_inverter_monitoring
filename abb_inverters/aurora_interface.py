@@ -1,8 +1,9 @@
-from aurorapy.client import AuroraError, AuroraSerialClient
-import logging
-from time import sleep
 from functools import cached_property
+from time import sleep
+import logging
 from pprint import pprint
+from pathlib import Path
+from aurorapy.client import AuroraError, AuroraSerialClient
 from influxdb import InfluxDBClient
 from .secrets import influxdb_host, influxdb_port, influxdb_db, serial_port_1, serial_port_2, influxdb_user, influxdb_password
 class AuroraInterface:
@@ -106,8 +107,7 @@ class AuroraInterface:
         return measurements
 
 if __name__ == "__main__":
-
-    ports = [serial_port_1, serial_port_2]
+    ports = [str(port) for port in Path("/dev/").glob("ttyUSB*")]
     interfaces = [AuroraInterface(serial_port=port, address=2) for port in ports]
     for interface in interfaces:
         interface.connect()
@@ -118,21 +118,36 @@ if __name__ == "__main__":
 
     while True:
         for interface in interfaces:  
-            measurements = interface.get_measurements()
+            measurements = {}
+            try:
+                measurements = interface.get_measurements()
+            except AuroraError as err:
+                if "must connect client" in str(err):
+                    interface.connect()
+                    measurements = interface.get_measurements()
+                elif "wrong CRC" in str(err):
+                    sleep(0.5)
+                    continue
+                elif "Unkwnown transmission state" in str(err):
+                    sleep(0.5)
+                    continue
+                else:
+                    continue
 
-            for key, value in measurements.items():
-                # MEAS_NAME,sensor=SENSOR_NAME value=VALUE
-                json_body = [
-                    {
-                        "measurement": key,
-                        "tags": {
-                            "sensor": interface.serial_number,
-                            },
-                        "fields": {
-                            "value": value,
-                            },
-                        }
-                    ]
-                pprint(json_body)
-                db_client.write_points(json_body)
-        sleep(2)
+            if measurements != {}:
+                for key, value in measurements.items():
+                    # MEAS_NAME,sensor=SENSOR_NAME value=VALUE
+                    json_body = [
+                        {
+                            "measurement": key,
+                            "tags": {
+                                "sensor": interface.serial_number,
+                                },
+                            "fields": {
+                                "value": value,
+                                },
+                            }
+                        ]
+                    pprint(json_body)
+                    db_client.write_points(json_body)
+                sleep(2)
