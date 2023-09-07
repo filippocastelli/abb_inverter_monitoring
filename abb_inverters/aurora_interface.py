@@ -112,11 +112,14 @@ def get_aurora_clients(single_interface: bool = True) -> list[AuroraInterface]:
             parity=serial.PARITY_NONE,
             stopbits=serial.STOPBITS_ONE,
         )
-        serial_interface.open()
-        interfaces = [
-            AuroraInterface(serial_port=ports[0], address=2),
-            AuroraInterface(serial_port=ports[0], address=3),
+        serial_clients = [
+            AuroraSerialClient(serial_line=serial_interface, address=2),
+            AuroraSerialClient(serial_line=serial_interface, address=3)
             ]
+        interfaces = [
+            AuroraInterface(aurora_client=client) for client in serial_clients
+            ]
+        
     else:
         interfaces = [
             AuroraSerialClient.from_connection_parameters(
