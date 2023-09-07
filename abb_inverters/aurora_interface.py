@@ -3,22 +3,17 @@ from time import sleep
 import logging
 from pprint import pprint
 from pathlib import Path
-from aurorapy.client import AuroraError, AuroraSerialClient
+from aurorapy import AuroraError, AuroraSerialClient, AuroraBaseClient
+import serial
 from influxdb import InfluxDBClient
 from .secrets import influxdb_host, influxdb_port, influxdb_db, serial_port_1, serial_port_2, influxdb_user, influxdb_password
 class AuroraInterface:
     def __init__(
             self,
-            serial_port: str = "/dev/ttyUSB1",
-            address: int = 2,
+            aurora_client: AuroraSerialClient,
             ):
-        self.serial_port = serial_port
-        self.address = address
-        self.aurora_client = AuroraSerialClient(
-                port=self.serial_port,
-                address=self.address,
-                )
-        
+        self.aurora_client = aurora_client
+
     def connect(self):
         self.aurora_client.connect()
         logging.info(f"Aurora inverter {self.serial_number} connected")
@@ -106,16 +101,39 @@ class AuroraInterface:
             }
         return measurements
 
-if __name__ == "__main__":
+
+def get_aurora_clients(single_interface: bool = True) -> list[AuroraInterface]:
     ports = [str(port) for port in Path("/dev/").glob("ttyUSB*")]
-    interfaces = [AuroraInterface(serial_port=port, address=2) for port in ports]
-    for interface in interfaces:
-        interface.connect()
+    if single_interface:
+        serial_interface = serial.Serial(
+            port=ports[0],
+            baudrate=19200,
+            bytesize=serial.EIGHTBITS,
+            parity=serial.PARITY_NONE,
+            stopbits=serial.STOPBITS_ONE,
+        )
+        serial_interface.open()
+        interfaces = [
+            AuroraInterface(serial_port=ports[0], address=2),
+            AuroraInterface(serial_port=ports[0], address=3),
+            ]
+    else:
+        interfaces = [
+            AuroraSerialClient.from_connection_parameters(
+                port=port,
+                address=2,
+                baudrate=19200,
+                parity='N',
+                stop_bits=1,
+                data_bits=8,
+                timeout=5,
+                tries=3,
+            ) for port in ports
+        ]
 
-    db_client = InfluxDBClient(
-        host=influxdb_host, port=influxdb_port, username=influxdb_user, password=influxdb_password)
-    db_client.switch_database(influxdb_db)
+    return interfaces
 
+def read_and_write_to_db(interfaces: list[AuroraInterface], db_client: InfluxDBClient):
     while True:
         for interface in interfaces:  
             measurements = {}
@@ -151,3 +169,17 @@ if __name__ == "__main__":
                     pprint(json_body)
                     db_client.write_points(json_body)
                 sleep(2)
+
+
+if __name__ == "__main__":
+    
+    interfaces = get_aurora_clients(single_interface=True)
+
+    for interface in interfaces:
+        interface.connect()
+
+    db_client = InfluxDBClient(
+        host=influxdb_host, port=influxdb_port, username=influxdb_user, password=influxdb_password)
+    db_client.switch_database(influxdb_db)
+
+    read_and_write_to_db(interfaces, db_client)
