@@ -6,7 +6,7 @@ from pathlib import Path
 from aurorapy import AuroraError, AuroraSerialClient, AuroraBaseClient
 import serial
 from influxdb import InfluxDBClient
-from .secrets import influxdb_host, influxdb_port, influxdb_db, serial_port_1, serial_port_2, influxdb_user, influxdb_password
+from secrets import influxdb_host, influxdb_port, influxdb_db, serial_port_1, serial_port_2, influxdb_user, influxdb_password
 class AuroraInterface:
     def __init__(
             self,
@@ -66,10 +66,10 @@ class AuroraInterface:
     
     def pv_energy_today(self) -> float:
         return self.aurora_client.cumulated_energy(period=0)
-    1
+    
     def pv_energy_week(self) -> float:
         return self.aurora_client.cumulated_energy(period=1)
-
+    
     def pv_energy_month(self) -> float:
         return self.aurora_client.cumulated_energy(period=3)
     
@@ -169,7 +169,6 @@ def read_and_write_to_db(interfaces: list[AuroraInterface], db_client: InfluxDBC
                     pprint(json_body)
                     db_client.write_points(json_body)
                 sleep(2)
-
 
 if __name__ == "__main__":
     
