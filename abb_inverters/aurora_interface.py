@@ -16,6 +16,7 @@ class AuroraInterface:
 
     def connect(self):
         self.aurora_client.connect()
+        print(f"Aurora inverter {self.serial_number} connected")
         logging.info(f"Aurora inverter {self.serial_number} connected")
     
     @cached_property
@@ -174,11 +175,18 @@ def read_and_write_to_db(interfaces: list[AuroraInterface], db_client: InfluxDBC
                 sleep(2)
 
 if __name__ == "__main__":
-    
-    interfaces = get_aurora_clients(single_interface=True)
-
-    for interface in interfaces:
-        interface.connect()
+    single_interface: bool = True
+    interfaces = get_aurora_clients(single_interface=single_interface)
+    print(f"Found {len(interfaces)} Aurora inverters")
+    print(interfaces)
+    if not single_interface:
+        for idx, interface in enumerate(interfaces):
+            # print(f"Connecting to {interface.serial_number}...")
+            print(f"Connecting to inverter {idx}... ")
+            interface.connect()
+            print("Connected")
+    else:
+        interfaces[0].connect()
 
     db_client = InfluxDBClient(
         host=influxdb_host, port=influxdb_port, username=influxdb_user, password=influxdb_password)
