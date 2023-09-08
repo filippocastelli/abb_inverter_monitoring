@@ -31,7 +31,7 @@
 #define debugEnabled 0
 #define LED_BLUE 16
 #define LED_GREEN 0
-
+#define LEN_MODBUS 37
 int avSamples = 1;
 
 struct stats{
@@ -43,7 +43,7 @@ struct stats{
    float multiplier;
 };
 
-stats arrstats[37] = {
+stats arrstats[LEN_MODBUS] = {
   //Register name, MODBUS address, integer type (0 = uint16_t​, 1 = uint32_t​, 3 = int32_t​), value, running average, multiplier)
   {"System_Status", 0, 0, 0.0, RunningAverage(avSamples), 1.0},
   {"PV_Voltage", 1, 0, 0.0, RunningAverage(avSamples), 0.1},
@@ -270,11 +270,11 @@ void sendInfluxData (const char *postData) {
 void readMODBUS() {
   Serial.flush(); //Make sure the hardware serial buffer is empty before communicating over MODBUS.
   digitalWrite(LED_GREEN, HIGH); //Turn the LED on while we're reading the MODBUS.
-  for (int i = 0; i < 37; i++) {  //Iterate through each of the MODBUS queries and obtain their values.
+  for (int i = 0; i < LEN_MODBUS; i++) {  //Iterate through each of the MODBUS queries and obtain their values.
     ArduinoOTA.handle();
     Growatt.clearResponseBuffer();
     MODBUSresult = Growatt.readInputRegisters(arrstats[i].address, 2); //Query each of the MODBUS registers.
-    if (MODBUSresult == Growatt.ku8MBSuccess) {
+        if (MODBUSresult == Growatt.ku8MBSuccess) {
       if (failures >= 1) {
         failures--; //Decrement the failure counter if we've received a response.
       }
