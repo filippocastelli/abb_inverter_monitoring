@@ -5,6 +5,7 @@ from pprint import pprint
 from pathlib import Path
 from aurorapy import AuroraError, AuroraSerialClient, AuroraBaseClient
 import serial
+from serial.tools.list_ports import comports
 from influxdb import InfluxDBClient
 from secrets import influxdb_host, influxdb_port, influxdb_db, serial_port_1, serial_port_2, influxdb_user, influxdb_password
 class AuroraInterface:
@@ -104,10 +105,14 @@ class AuroraInterface:
 
 
 def get_aurora_clients(single_interface: bool = True) -> list[AuroraInterface]:
-    ports = [str(port) for port in Path("/dev/").glob("ttyUSB*")]
+    # ports = [str(port) for port in Path("/dev/").glob("ttyUSB*")]
+
+    com_ports = [comport for comport in comports() if comport.vid == 6790]
+
     if single_interface:
+        port = [port for port in com_ports if port.location == "1-1.2"]
         serial_interface = serial.Serial(
-            port=ports[0],
+            port=port[0].device,
             baudrate=19200,
             bytesize=serial.EIGHTBITS,
             parity=serial.PARITY_NONE,
@@ -124,7 +129,7 @@ def get_aurora_clients(single_interface: bool = True) -> list[AuroraInterface]:
     else:
         interfaces = [
             AuroraSerialClient.from_connection_parameters(
-                port=port,
+                port=com_port.device,
                 address=2,
                 baudrate=19200,
                 parity='N',
@@ -132,7 +137,7 @@ def get_aurora_clients(single_interface: bool = True) -> list[AuroraInterface]:
                 data_bits=8,
                 timeout=5,
                 tries=3,
-            ) for port in ports
+            ) for com_port in com_ports
         ]
 
     return interfaces
