@@ -274,26 +274,25 @@ void readMODBUS() {
     ArduinoOTA.handle();
     Growatt.clearResponseBuffer();
     MODBUSresult = Growatt.readInputRegisters(arrstats[i].address, 2); //Query each of the MODBUS registers.
-        if (MODBUSresult == Growatt.ku8MBSuccess) {
-      if (failures >= 1) {
-        failures--; //Decrement the failure counter if we've received a response.
-      }
-
-      if (arrstats[i].type == 0) {
-        //TelnetStream.print("Raw MODBUS for address: "); TelnetStream.print(arrstats[i].address); TelnetStream.print(": "); TelnetStream.println(Growatt.getResponseBuffer(0));
-        arrstats[i].value = (Growatt.getResponseBuffer(0) * arrstats[i].multiplier); //Calculatge the actual value.
-      }
-      else if (arrstats[i].type == 1) {
-        arrstats[i].value = ((Growatt.getResponseBuffer(0) << 8) | Growatt.getResponseBuffer(1)) * arrstats[i].multiplier;  //Calculatge the actual value.
-      }
-      else if (arrstats[i].type == 2) { //Signed INT32
-        arrstats[i].value = (Growatt.getResponseBuffer(1) + (Growatt.getResponseBuffer(0) << 16)) * arrstats[i].multiplier;  //Calculatge the actual value.
-      }
-
-      if (arrstats[i].address == 69) {
-        if (arrstats[i].value > 6000) { //AC_Discharge_Watts will return very large, invalid results when the inverter has been in stanby mode. Ignore the result if the number is greater than 6kW.
-          arrstats[i].value = 0;
+      if (MODBUSresult == Growatt.ku8MBSuccess) {
+        if (failures >= 1) {
+          failures--; //Decrement the failure counter if we've received a response.
         }
+        if (arrstats[i].type == 0) {
+          //TelnetStream.print("Raw MODBUS for address: "); TelnetStream.print(arrstats[i].address); TelnetStream.print(": "); TelnetStream.println(Growatt.getResponseBuffer(0));
+          arrstats[i].value = (Growatt.getResponseBuffer(0) * arrstats[i].multiplier); //Calculatge the actual value.
+        }
+        else if (arrstats[i].type == 1) {
+          arrstats[i].value = ((Growatt.getResponseBuffer(0) << 8) | Growatt.getResponseBuffer(1)) * arrstats[i].multiplier;  //Calculatge the actual value.
+        }
+        else if (arrstats[i].type == 2) { //Signed INT32
+          arrstats[i].value = (Growatt.getResponseBuffer(1) + (Growatt.getResponseBuffer(0) << 16)) * arrstats[i].multiplier;  //Calculatge the actual value.
+        }
+
+        if (arrstats[i].address == 69) {
+          if (arrstats[i].value > 6000) { //AC_Discharge_Watts will return very large, invalid results when the inverter has been in stanby mode. Ignore the result if the number is greater than 6kW.
+            arrstats[i].value = 0;
+          }
       }
 
       TelnetStream.print(arrstats[i].name); TelnetStream.print(": "); TelnetStream.println(arrstats[i].value);
@@ -307,7 +306,7 @@ void readMODBUS() {
         #if defined (INFLUX_HTTP) || defined (INFLUX_UDP)
           char post[70];
           sprintf(post, "%s,sensor=%s value=%s", arrstats[i].name, INVERTER_NAME, realtimeAvString);
-          sendInfluxData(post);
+          // sendInfluxData(post);
           TelnetStream.printf("Posting %s to InfluxDB \r\n", post);
         #endif
 
