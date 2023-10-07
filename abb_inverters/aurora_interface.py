@@ -6,8 +6,11 @@ from pathlib import Path
 from aurorapy import AuroraError, AuroraSerialClient, AuroraBaseClient
 import serial
 from serial.tools.list_ports import comports
-from influxdb import InfluxDBClient
-from secrets import influxdb_host, influxdb_port, influxdb_db, serial_port_1, serial_port_2, influxdb_user, influxdb_password
+# from influxdb import InfluxDBClient
+from influxdb_client import InfluxDBClient, Point, WritePrecision, WriteApi
+from influxdb_client.client.write_api import SYNCHRONOUS
+
+import secrets
 class AuroraInterface:
     def __init__(
             self,
@@ -142,7 +145,7 @@ def get_aurora_clients(single_interface: bool = True) -> list[AuroraInterface]:
 
     return interfaces
 
-def read_and_write_to_db(interfaces: list[AuroraInterface], db_client: InfluxDBClient):
+def read_and_write_to_db(interfaces: list[AuroraInterface], db_client_api: WriteApi):
     while True:
         for interface in interfaces:  
             measurements = {}
@@ -164,19 +167,14 @@ def read_and_write_to_db(interfaces: list[AuroraInterface], db_client: InfluxDBC
             if measurements != {}:
                 for key, value in measurements.items():
                     # MEAS_NAME,sensor=SENSOR_NAME value=VALUE
-                    json_body = [
-                        {
-                            "measurement": key,
-                            "tags": {
-                                "sensor": interface.serial_number,
-                                },
-                            "fields": {
-                                "value": value,
-                                },
-                            }
-                        ]
-                    pprint(json_body)
-                    db_client.write_points(json_body)
+                    point = (
+                        Point(str(interface.serial_number))
+                        .field(key, value)
+                    )
+                    db_client_api.write(
+                        bucket=secrets.influxdb_bucket,
+                        org=secrets.influxdb_org,
+                        record=point)
                 sleep(2)
 def main_loop():
     single_interface: bool = True
@@ -184,11 +182,14 @@ def main_loop():
     print(f"Found {len(interfaces)} Aurora inverters")
     print(interfaces)
     connect(interfaces, single_interface=single_interface)
-    db_client = InfluxDBClient(
-        host=influxdb_host, port=influxdb_port, username=influxdb_user, password=influxdb_password)
-    db_client.switch_database(influxdb_db)
 
-    read_and_write_to_db(interfaces, db_client)
+    write_client = InfluxDBClient(
+        url=secrets.influxdb_url,
+        token=secrets.influxdb_token,
+        org=secrets.influxdb_org,
+        )
+    write_api = write_client.write_api(write_options=SYNCHRONOUS)
+    read_and_write_to_db(interfaces, write_client)
 
 
 def connect(interfaces: list[AuroraInterface], single_interface: bool = True):
