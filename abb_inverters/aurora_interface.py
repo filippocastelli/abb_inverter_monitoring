@@ -178,8 +178,7 @@ def read_and_write_to_db(interfaces: list[AuroraInterface], db_client: InfluxDBC
                     pprint(json_body)
                     db_client.write_points(json_body)
                 sleep(2)
-
-if __name__ == "__main__":
+def main_loop():
     single_interface: bool = True
     interfaces = get_aurora_clients(single_interface=single_interface)
     print(f"Found {len(interfaces)} Aurora inverters")
@@ -198,3 +197,10 @@ if __name__ == "__main__":
     db_client.switch_database(influxdb_db)
 
     read_and_write_to_db(interfaces, db_client)
+
+if __name__ == "__main__":
+    while True:
+        try:
+            main_loop()
+        except:
+            pass
