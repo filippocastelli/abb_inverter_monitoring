@@ -183,20 +183,26 @@ def main_loop():
     interfaces = get_aurora_clients(single_interface=single_interface)
     print(f"Found {len(interfaces)} Aurora inverters")
     print(interfaces)
-    if not single_interface:
-        for idx, interface in enumerate(interfaces):
-            # print(f"Connecting to {interface.serial_number}...")
-            print(f"Connecting to inverter {idx}... ")
-            interface.connect()
-            print("Connected")
-    else:
-        interfaces[0].connect()
-
+    connect(interfaces, single_interface=single_interface)
     db_client = InfluxDBClient(
         host=influxdb_host, port=influxdb_port, username=influxdb_user, password=influxdb_password)
     db_client.switch_database(influxdb_db)
 
     read_and_write_to_db(interfaces, db_client)
+
+
+def connect(interfaces: list[AuroraInterface], single_interface: bool = True):
+    try:
+        if single_interface:
+            interfaces[0].connect()
+        else:
+            for interface in interfaces:
+                interface.connect()
+    except AuroraError as err:
+        sleep(1)
+        connect(interfaces, single_interface=single_interface)
+    return
+
 
 if __name__ == "__main__":
     while True:
