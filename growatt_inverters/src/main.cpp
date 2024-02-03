@@ -1,3 +1,7 @@
+// platformio build flags
+// this should be overridden in platformio.ini
+#define INVERTER_NAME INV_NAME
+
 //Choose which protocol you'd like to post the statistics to your database by uncommenting one (or more) of the definitions below.
 //#define INFLUX_UDP
 #define INFLUX2_CLIENT
