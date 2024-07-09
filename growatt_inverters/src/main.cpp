@@ -26,10 +26,14 @@
 
 #include <secrets.h>
 
-#define debugEnabled 0
+#define debugEnabled 1
 #define LED_BLUE 16
 #define LED_GREEN 0
 #define LEN_MODBUS 37
+
+#define MAX_CONNECTION_FAILURES 10
+#define MAX_MODBUS_FAILURES 5
+
 int avSamples = 1;
 
 struct stats {
@@ -85,8 +89,8 @@ stats arrstats[LEN_MODBUS] = {
 ModbusMaster Growatt;
 uint8_t MODBUSresult;
 unsigned long lastUpdate = 0;
-int failures = 0; //The number of failed WiFi or send attempts. Will automatically restart the ESP if too many failures occurr in a row.
-
+uint8_t wifi_failures = 0;
+uint8_t modbus_failures = 0;
 
 InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN); // InfluxDbCloud2CACert was in the original code, but it's not defined anywhere.
 Point sensor(INVERTER_NAME);
@@ -104,6 +108,7 @@ void setup() {
   pinMode(LED_BLUE, OUTPUT);
   pinMode(LED_GREEN, OUTPUT);
 
+  WiFi.persistent(false);
   WiFi.mode(WIFI_STA);
   WiFi.begin(SECRET_SSID, SECRET_PASS); //Edit include/secrets.h to update this data.
 
@@ -121,8 +126,8 @@ void setup() {
     if (debugEnabled == 1) {
       Serial.println();
       Serial.println("WiFi didn't connect, restarting...");
-    }
-    ESP.restart(); //Restart if the WiFi still hasn't connected.
+    };
+    abort();
   }
   if (debugEnabled == 1) {
     Serial.println();
@@ -215,8 +220,8 @@ void readMODBUS() {
     MODBUSresult = Growatt.readInputRegisters(arrstats[i].address, 2); //Query each of the MODBUS registers.
 
     if (MODBUSresult == Growatt.ku8MBSuccess) {
-      if (failures >= 1) {
-        failures--; //Decrement the failure counter if we've received a response.
+      if (modbus_failures >= 1) {
+        modbus_failures--; //Decrement the failure counter if we've received a response.
       }
       arrstats[i].value = getFloatReading(i);
 
@@ -237,9 +242,12 @@ void readMODBUS() {
     } else {
       TelnetStream.print("MODBUS read failed. Returned value: ");
       TelnetStream.println(MODBUSresult);
-      failures++;
+      modbus_failures++;
       TelnetStream.print("Failure counter: ");
-      TelnetStream.println(failures);
+      TelnetStream.println(modbus_failures);
+      digitalWrite(LED_GREEN, LOW);
+      yield();
+      break;
     }
     digitalWrite(LED_GREEN, LOW); //Turn the LED off after we've finished reading the MODBUS.
     yield();
@@ -250,35 +258,43 @@ void readMODBUS() {
 void loop() {
   ArduinoOTA.handle();
   //MQTTclient.loop();
-
   if (WiFi.status() != WL_CONNECTED) {
     if (debugEnabled == 1) {
       Serial.println("WiFi disconnected. Attempting to reconnect... ");
     }
     digitalWrite(LED_BLUE, LOW); //Turn the LED off if the WiFi is disconnected.
-    failures++;
+    wifi_failures++;
     WiFi.begin(SECRET_SSID, SECRET_PASS);
     delay(1000);
   } else {
     digitalWrite(LED_BLUE, HIGH); //Turn the LED on if the WiFi is connected.
+    if ((unsigned long)(millis() - lastUpdate) >= 5000) { //Get a MODBUS reading every 5 seconds.
+      float rssi = WiFi.RSSI();
+      TelnetStream.println("WiFi signal strength is: ");
+      TelnetStream.println(rssi);
+      TelnetStream.println("Reading the MODBUS...");
+      Serial.println("Reading the MODBUS...");
+      readMODBUS();
+      lastUpdate = millis();
+    }
   }
 
-  if ((unsigned long)(millis() - lastUpdate) >= 5000) { //Get a MODBUS reading every 5 seconds.
-    float rssi = WiFi.RSSI();
-    TelnetStream.println("WiFi signal strength is: ");
-    TelnetStream.println(rssi);
-    TelnetStream.println("Reading the MODBUS...");
-    readMODBUS();
-    lastUpdate = millis();
-  }
-
-  if (failures >= 40) { //Reboot the ESP if there's been too many problems retrieving or sending the data.
+  if ((wifi_failures >= MAX_CONNECTION_FAILURES) | (modbus_failures >= MAX_MODBUS_FAILURES)) { //Reboot the ESP if there's been too many problems retrieving or sending the data.
     if (debugEnabled == 1) {
       Serial.print("Too many failures, rebooting...");
     }
     TelnetStream.print("Failure counter has reached: ");
-    TelnetStream.print(failures);
+    TelnetStream.print(wifi_failures);
     TelnetStream.println(". Rebooting...");
-    ESP.restart();
+    // rapidly flash the LED to indicate a failure
+    for (int i = 0; i < 10; i++) {
+      digitalWrite(LED_GREEN, HIGH);
+      digitalWrite(LED_BLUE, HIGH);
+      delay(50);
+      digitalWrite(LED_GREEN, LOW);
+      digitalWrite(LED_BLUE, LOW);
+      delay(50);
+    }
+    abort();
   }
 }
